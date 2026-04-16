@@ -75,7 +75,20 @@ PARTE II – QUESTÕES PRÁTICAS (FOCO EM POO)
 
 --------------------------------------------------
 
+public class Pessoa {
+    private String nome;
+    private int idade;
 
+    public String getNome() { return nome; }
+    public void setNome(String nome) { this.nome = nome; }
+
+    public int getIdade() { return idade; }
+    public void setIdade(int idade) { this.idade = idade; }
+
+    public void apresentar() {
+        System.out.println("Nome: " + nome + ", Idade: " + idade);
+    }
+}
 
 --------------------------------------------------
 
@@ -86,7 +99,19 @@ PARTE II – QUESTÕES PRÁTICAS (FOCO EM POO)
 
 --------------------------------------------------
 
+public class Produto {
+    private String nome;
+    private double preco;
 
+    public Produto(String nome, double preco) {
+        this.nome = nome;
+        this.preco = preco;
+    }
+
+    public String exibir() {
+        return nome + " - R$" + preco;
+    }
+}
 
 --------------------------------------------------
 
@@ -97,6 +122,18 @@ PARTE II – QUESTÕES PRÁTICAS (FOCO EM POO)
 
 --------------------------------------------------
 
+public class Aluno {
+    private String nome;
+    private double nota1, nota2;
+
+    public double calcularMedia() {
+        return (nota1 + nota2) / 2;
+    }
+
+    public String verificarSituacao() {
+        return calcularMedia() >= 6 ? "Aprovado" : "Reprovado";
+    }
+}
 
 --------------------------------------------------
 
@@ -107,7 +144,21 @@ PARTE II – QUESTÕES PRÁTICAS (FOCO EM POO)
 
 --------------------------------------------------
 
+public class Conta {
+    private double saldo;
 
+    public void depositar(double valor) {
+        saldo += valor;
+    }
+
+    public void sacar(double valor) {
+        if (valor <= saldo) {
+            saldo -= valor;
+        } else {
+            System.out.println("Saldo insuficiente");
+        }
+    }
+}
 
 --------------------------------------------------
 
@@ -118,7 +169,18 @@ PARTE II – QUESTÕES PRÁTICAS (FOCO EM POO)
 
 --------------------------------------------------
 
+public class Carro {
+    private String marca, modelo;
 
+    public Carro(String marca, String modelo) {
+        this.marca = marca;
+        this.modelo = modelo;
+    }
+
+    public void exibirDados() {
+        System.out.println(marca + " - " + modelo);
+    }
+}
 
 --------------------------------------------------
 
@@ -128,7 +190,14 @@ PARTE II – QUESTÕES PRÁTICAS (FOCO EM POO)
 
 --------------------------------------------------
 
+public class Animal {
+    protected String nome;
+    protected int idade;
 
+    public void emitirSom() {
+        System.out.println("Som genérico");
+    }
+}
 
 --------------------------------------------------
 
@@ -138,7 +207,14 @@ PARTE II – QUESTÕES PRÁTICAS (FOCO EM POO)
 
 --------------------------------------------------
 
+public class Cachorro extends Animal {
+    private String raca;
 
+    @Override
+    public void emitirSom() {
+        System.out.println("Latido");
+    }
+}
 
 --------------------------------------------------
 
@@ -148,7 +224,14 @@ PARTE II – QUESTÕES PRÁTICAS (FOCO EM POO)
 
 --------------------------------------------------
 
+public class Gato extends Animal {
+    private int numVidas;
 
+    @Override
+    public void emitirSom() {
+        System.out.println("Miau");
+    }
+}
 
 --------------------------------------------------
 
@@ -158,7 +241,14 @@ PARTE II – QUESTÕES PRÁTICAS (FOCO EM POO)
 
 --------------------------------------------------
 
+public class Veiculo {
+    protected String marca;
+    protected int ano;
 
+    public void ligar() {
+        System.out.println("Veículo ligado");
+    }
+}
 
 --------------------------------------------------
 
@@ -168,7 +258,14 @@ PARTE II – QUESTÕES PRÁTICAS (FOCO EM POO)
 
 --------------------------------------------------
 
+public class Moto extends Veiculo {
+    private int cilindrada;
 
+    @Override
+    public void ligar() {
+        System.out.println("Moto ligada com ronco forte");
+    }
+}
 
 --------------------------------------------------
 
@@ -178,7 +275,14 @@ PARTE II – QUESTÕES PRÁTICAS (FOCO EM POO)
 
 --------------------------------------------------
 
+public class Funcionario {
+    protected String nome;
+    protected double salario;
 
+    public double calcularSalario() {
+        return salario;
+    }
+}
 
 --------------------------------------------------
 
@@ -188,7 +292,14 @@ PARTE II – QUESTÕES PRÁTICAS (FOCO EM POO)
 
 --------------------------------------------------
 
+public class Gerente extends Funcionario {
+    private double bonus;
 
+    @Override
+    public double calcularSalario() {
+        return salario + bonus;
+    }
+}
 
 --------------------------------------------------
 
@@ -201,7 +312,33 @@ Incluindo:
 
 --------------------------------------------------
 
+public class Animal {
+    private String nome;
 
+    public Animal(String nome) {
+        this.nome = nome;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+}
+
+public class Mamifero extends Animal {
+    public Mamifero(String nome) {
+        super(nome);
+    }
+}
+
+public class Marsupial extends Mamifero {
+    public Marsupial(String nome) {
+        super(nome);
+    }
+
+    public String info() {
+        return "Marsupial: " + getNome();
+    }
+}
 
 --------------------------------------------------
 
@@ -212,7 +349,29 @@ Incluindo:
 
 --------------------------------------------------
 
+public class Pessoa {
+    private String nome;
+    private String codigo;
+    private int idade;
 
+    public void setNome(String nome) {
+        if (nome.matches("[a-zA-Z ]+")) {
+            this.nome = nome;
+        }
+    }
+
+    public void setCodigo(String codigo) {
+        if (codigo.matches("\\d+")) {
+            this.codigo = codigo;
+        }
+    }
+
+    public void setIdade(int idade) {
+        if (idade >= 0) {
+            this.idade = idade;
+        }
+    }
+}
 
 --------------------------------------------------
 
@@ -225,7 +384,39 @@ Incluindo:
 - sobrescrita
 --------------------------------------------------
 
+public class Animal {
+    protected String nome;
 
+    public Animal(String nome) {
+        this.nome = nome;
+    }
+
+    public String emitirSom() {
+        return "Som";
+    }
+}
+
+public class Cachorro extends Animal {
+    public Cachorro(String nome) {
+        super(nome);
+    }
+
+    @Override
+    public String emitirSom() {
+        return "Latido";
+    }
+}
+
+public class Gato extends Animal {
+    public Gato(String nome) {
+        super(nome);
+    }
+
+    @Override
+    public String emitirSom() {
+        return "Miau";
+    }
+}
 
 --------------------------------------------------
 ==================================================
